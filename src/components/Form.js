@@ -1,6 +1,6 @@
 import React from "react";
 
-const Form = React.memo(({ value, setValue, setTodoData }) => {
+const Form = React.memo(({ value, setValue, setTodoData, todoData }) => {
   console.log("Form Component");
 
   const handleChange = (e) => {
@@ -19,6 +19,10 @@ const Form = React.memo(({ value, setValue, setTodoData }) => {
 
     // 원래 있던 할 일에 새로운 할 일 더해주기
     setTodoData((prev) => [...prev, newTodoData]);
+    localStorage.setItem(
+      "todoData",
+      JSON.stringify([...todoData, newTodoData])
+    );
     setValue("");
   };
 
